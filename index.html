@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>책을 읽고 감정 단어 복습하기 | 별일 없는 날에 일기 쓰기</title>
+<meta name="description" content="『별일 없는 날에 일기 쓰기』 38~39쪽 기분 좋은 감정 단어 12개를 일기요정과 함께 복습해요.">
+<meta property="og:title" content="책을 읽고 감정 단어 복습하기">
+<meta property="og:description" content="일기요정과 함께 기분 좋은 감정 단어 12개를 복습해요. 『별일 없는 날에 일기 쓰기』(사계절)">
+<meta property="og:image" content="https://yanggam77.github.io/diary-emotion-words/assets/og.jpg">
+<meta property="og:url" content="https://yanggam77.github.io/diary-emotion-words/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  @font-face{font-family:"Miso";src:url("fonts/miso-b.woff2") format("woff2");font-display:swap}
+  @font-face{font-family:"NSR";font-weight:400;src:url("fonts/nsr-r.woff2") format("woff2");font-display:swap}
+  @font-face{font-family:"NSR";font-weight:800;src:url("fonts/nsr-eb.woff2") format("woff2");font-display:swap}
+  :root{
+    --purple:#8b7cc8; --purple-d:#6a5bb0; --lav:#e9e5f7; --lav2:#d6cff0;
+    --yellow:#ffe98f; --yellow-l:#fff6c9; --peach:#fdeee6; --pink:#f0a39a;
+    --red:#e8323a; --green:#3fae6a; --ink:#3b3550; --gray:#8c87a0;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%}
+  body{font-family:"NSR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);
+       background:var(--lav);font-size:17px;line-height:1.55;word-break:keep-all}
+  .miso,h1,h2,.btn,.chip,.word,.badge{font-family:"Miso","NSR",sans-serif;font-weight:normal}
+  #app{max-width:480px;margin:0 auto;min-height:100%;background:#fff;position:relative;
+       display:flex;flex-direction:column;box-shadow:0 0 30px rgba(80,60,140,.12)}
+  /* 위쪽 물결 띠(책 쪽 머리 장식) */
+  .wave{height:22px;background:var(--lav2);
+        -webkit-mask:radial-gradient(14px 10px at 50% 100%,#0000 98%,#000) 0 0/40px 100%;
+                mask:radial-gradient(14px 10px at 50% 100%,#0000 98%,#000) 0 0/40px 100%}
+  header.bar{display:flex;align-items:center;gap:10px;padding:8px 16px 4px}
+  header.bar[hidden]{display:none}
+  header.bar .step{font-family:"Miso";color:var(--purple-d);font-size:15px;background:var(--lav);
+        border-radius:20px;padding:3px 12px}
+  header.bar .prog{flex:1;height:10px;background:var(--lav);border-radius:10px;overflow:hidden}
+  header.bar .prog i{display:block;height:100%;width:0;background:var(--purple);border-radius:10px;transition:width .35s}
+  header.bar .home{border:0;background:none;font-size:22px;color:var(--gray);cursor:pointer;padding:4px}
+  main{flex:1;padding:8px 20px 28px;display:flex;flex-direction:column}
+  .screen{display:none;flex-direction:column;flex:1;animation:fade .35s}
+  .screen.on{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  h1{font-size:31px;line-height:1.25;margin:6px 0 4px;color:var(--purple-d);text-align:center}
+  h2{font-size:24px;line-height:1.3;margin:6px 0 6px;color:var(--purple-d)}
+  .sub{color:var(--gray);font-size:15px;text-align:center;margin:0}
+  .center{text-align:center}
+  .btn{display:block;width:100%;border:0;border-radius:18px;padding:15px 10px 13px;font-size:22px;
+       cursor:pointer;background:var(--purple);color:#fff;box-shadow:0 5px 0 var(--purple-d);
+       transition:transform .08s, box-shadow .08s}
+  .btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--purple-d)}
+  .btn.ghost{background:#fff;color:var(--purple-d);box-shadow:0 0 0 2px var(--lav2) inset}
+  .btn.red{background:var(--red);box-shadow:0 5px 0 #b51f27}
+  .btn + .btn{margin-top:12px}
+  .spacer{flex:1}
+  .bubble{position:relative;background:var(--peach);border:2.5px solid var(--pink);border-radius:26px;
+          padding:14px 18px;font-size:17px;margin:10px 0}
+  .bubble b{color:var(--red)}
+  .bubble.tail-l::after{content:"";position:absolute;left:38px;bottom:-14px;width:22px;height:16px;
+          background:var(--peach);border-right:2.5px solid var(--pink);border-bottom:2.5px solid var(--pink);
+          transform:skewX(-35deg) rotate(10deg);border-bottom-right-radius:8px}
+  .speak{border:0;background:var(--lav);color:var(--purple-d);border-radius:20px;padding:5px 12px 4px;
+         font-size:14px;cursor:pointer;font-family:"NSR";font-weight:800;vertical-align:middle}
+  .speak[hidden]{display:none}
+
+  /* 시작 */
+  .fairy-start{width:72%;max-width:300px;display:block;margin:4px auto -6px}
+  .steps{display:flex;gap:8px;margin:14px 0 18px}
+  .steps div{flex:1;background:var(--lav);border-radius:16px;padding:10px 6px;text-align:center;font-size:14px}
+  .steps b{display:block;font-family:"Miso";font-weight:normal;color:var(--purple-d);font-size:17px}
+  .booktag{display:inline-block;background:var(--yellow-l);border-radius:12px;padding:2px 10px;font-size:14px}
+
+  /* 단어 점검 */
+  .checkcard{background:var(--yellow-l);border-radius:28px;padding:26px 16px 22px;text-align:center;margin:10px 0 18px;
+             border:3px dashed var(--yellow)}
+  .word{display:inline-block;background:var(--yellow);border-radius:16px;padding:10px 22px 8px;font-size:36px;
+        box-shadow:0 0 0 3px #fff, 0 0 0 5px #f3d36b}
+  .q{font-size:19px;margin:18px 0 0}
+  .answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .answers button{border:0;border-radius:20px;padding:14px 4px 10px;background:var(--lav);cursor:pointer;
+       font-family:"Miso";font-size:18px;color:var(--ink);box-shadow:0 4px 0 var(--lav2)}
+  .answers button span{display:block;font-size:34px;line-height:1.2}
+  .answers button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--lav2)}
+
+  /* 단어 만나기 카드 */
+  .meet{border-radius:28px;overflow:hidden;border:3px solid var(--lav2);background:#fff;margin:8px 0 14px}
+  .meet img{display:block;width:100%;height:auto;max-height:46vh;object-fit:contain;background:#fff}
+  .meet .lab{text-align:center;padding:10px 10px 16px;background:#fff}
+  .meet .tagline{font-size:14px;color:var(--gray);margin-top:8px}
+  .dots{display:flex;justify-content:center;gap:6px;margin:4px 0 12px;flex-wrap:wrap}
+  .dots i{width:9px;height:9px;border-radius:50%;background:var(--lav2)}
+  .dots i.on{background:var(--purple)}
+  .row2{display:flex;gap:10px}
+  .row2 .btn{margin:0}
+
+  /* 빈칸 채우기 */
+  .sentence{background:#fff;border:3px solid var(--lav2);border-radius:24px;padding:18px 18px 14px;font-size:20px;
+            line-height:1.75;margin:6px 0 10px;min-height:120px}
+  .sentence .no{font-family:"Miso";color:var(--purple);font-size:22px;margin-right:6px}
+  .blank{display:inline-block;min-width:96px;border-bottom:3px solid var(--purple);text-align:center;
+         color:transparent;padding:0 4px;line-height:1.3}
+  .blank.filled{color:var(--purple-d);font-weight:800;border-bottom-color:var(--green);background:#eaf8ee;border-radius:8px 8px 0 0}
+  .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 10px}
+  .chip{border:0;background:var(--yellow);border-radius:14px;padding:11px 2px 9px;font-size:17px;cursor:pointer;
+        color:var(--ink);box-shadow:0 3px 0 #f0cf55;line-height:1.15;transition:opacity .2s}
+  .chip:active{transform:translateY(2px);box-shadow:0 1px 0 #f0cf55}
+  .chip.no{opacity:.35}
+  .chip.ok{background:var(--green);color:#fff;box-shadow:0 3px 0 #2c8a51}
+  .chip.hint{animation:glow 1s ease-in-out infinite alternate}
+  @keyframes glow{from{box-shadow:0 0 0 0 rgba(139,124,200,.0),0 3px 0 #f0cf55}to{box-shadow:0 0 0 5px rgba(139,124,200,.7),0 3px 0 #f0cf55}}
+  .shake{animation:shake .4s}
+  @keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  .fb{display:flex;gap:10px;align-items:flex-start;min-height:64px}
+  .fb img{width:54px;flex:none;margin-top:2px}
+  .fb .bubble{margin:0;flex:1;font-size:16px;padding:10px 14px}
+  .fb .bubble.good{background:#eaf8ee;border-color:#8fd3a8}
+  .also{display:inline-block;background:var(--yellow-l);border-radius:8px;padding:0 6px;margin:2px 2px 0 0;font-family:"Miso"}
+  .peek{display:flex;gap:10px;align-items:center;background:var(--lav);border-radius:18px;padding:8px;margin:0 0 10px}
+  .peek img{width:42%;border-radius:12px;background:#fff}
+  .peek p{margin:0;font-size:15px}
+
+  /* 결과 */
+  .badge{display:inline-block;background:var(--yellow);border-radius:12px;padding:6px 12px 4px;margin:4px 3px;font-size:17px}
+  .badge.new{background:#ffd5cf}
+  .stat{display:flex;gap:8px;margin:10px 0}
+  .stat div{flex:1;background:var(--lav);border-radius:18px;padding:10px 4px;text-align:center;font-size:14px}
+  .stat b{display:block;font-family:"Miso";font-weight:normal;font-size:30px;color:var(--purple-d);line-height:1.2}
+  .today{background:var(--yellow-l);border-radius:24px;padding:16px;margin:14px 0}
+  .today .chips{margin-bottom:0}
+  .diary{font-size:20px;text-align:center;margin:12px 0 0;min-height:32px}
+  .diary b{color:var(--red);font-family:"Miso";font-weight:normal}
+  .promo{display:flex;gap:14px;align-items:center;background:var(--lav);border-radius:24px;padding:14px;margin:8px 0 14px}
+  .promo img{width:34%;border-radius:4px;box-shadow:3px 4px 10px rgba(0,0,0,.18)}
+  .promo p{margin:0;font-size:15px}
+  .promo strong{font-family:"Miso";font-weight:normal;font-size:18px;color:var(--purple-d);display:block;margin-bottom:4px}
+  footer{font-size:11.5px;color:var(--gray);text-align:center;padding:10px 16px 18px;line-height:1.5}
+  footer img{height:20px;display:block;margin:0 auto 6px;opacity:.85}
+  .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:9}
+  .confetti i{position:absolute;top:-20px;width:10px;height:14px;border-radius:3px;animation:fall 1.6s linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+  @media (max-width:360px){body{font-size:16px}h1{font-size:27px}.word{font-size:30px}.chip{font-size:15px}.sentence{font-size:18px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="wave"></div>
+  <header class="bar" id="bar" hidden>
+    <span class="step" id="stepName">단어 점검</span>
+    <span class="prog"><i id="progBar"></i></span>
+    <button class="home" id="homeBtn" aria-label="처음으로">⌂</button>
+  </header>
+
+  <main>
+    <!-- 0. 시작 -->
+    <section class="screen on" id="s-start">
+      <p class="center" style="margin:6px 0 0"><span class="booktag">『별일 없는 날에 일기 쓰기』 38~39쪽</span></p>
+      <h1>책을 읽고<br>감정 단어 복습하기</h1>
+      <p class="sub">기분 좋은 감정 단어들 ①</p>
+      <img class="fairy-start" src="assets/fairy.png" alt="연필을 든 일기요정">
+      <div class="bubble">
+        “재미있었다.” 말고 내 마음에 <b>딱 맞는 말</b>, 얼마나 알고 있나요?
+        일기요정과 함께 기분 좋은 감정 단어 <b>12개</b>를 복습해 봐요!
+      </div>
+      <div class="steps">
+        <div><b>1 점검</b>아는 단어<br>골라 보기</div>
+        <div><b>2 만나기</b>그림으로<br>다시 보기</div>
+        <div><b>3 빈칸</b>어울리는<br>단어 넣기</div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn red" id="startBtn">시작하기</button>
+    </section>
+
+    <!-- 1. 단어 점검 -->
+    <section class="screen" id="s-check">
+      <h2>이 단어, 알고 있나요?</h2>
+      <div class="checkcard">
+        <div class="word" id="checkWord">감동이다.</div>
+        <p class="q"><button class="speak" id="checkSpeak">🔊 들어 보기</button></p>
+      </div>
+      <div class="answers">
+        <button data-k="know"><span>😀</span>알아요</button>
+        <button data-k="unsure"><span>🤔</span>헷갈려요</button>
+        <button data-k="new"><span>😮</span>처음 봐요</button>
+      </div>
+      <div class="spacer"></div>
+      <p class="sub" style="margin-top:16px">솔직하게 골라도 괜찮아요. 모르는 단어는 다음 단계에서 그림으로 만나요!</p>
+    </section>
+
+    <!-- 2. 단어 만나기 -->
+    <section class="screen" id="s-meet">
+      <h2 id="meetTitle">그림으로 단어 만나기</h2>
+      <div class="meet">
+        <img id="meetImg" src="" alt="">
+        <div class="lab">
+          <div class="word" id="meetWord">감동이다.</div>
+          <div class="tagline"><button class="speak" id="meetSpeak">🔊 말풍선 듣기</button></div>
+        </div>
+      </div>
+      <div class="dots" id="meetDots"></div>
+      <div class="spacer"></div>
+      <div class="row2">
+        <button class="btn ghost" id="meetPrev">이전</button>
+        <button class="btn" id="meetNext">다음</button>
+      </div>
+    </section>
+
+    <!-- 2-1. 모두 알아요 -->
+    <section class="screen" id="s-allknow">
+      <img class="fairy-start" src="assets/fairy.png" alt="" style="width:52%">
+      <h2 class="center">우아, 12개를 모두 안다고요?</h2>
+      <div class="bubble">정말 멋져요! 그럼 바로 <b>빈칸 채우기</b>로 실력을 확인해 볼까요?
+        그림으로 한 번 더 보고 싶으면 ‘그림 보기’를 눌러요.</div>
+      <div class="spacer"></div>
+      <button class="btn" id="allQuiz">빈칸 채우기</button>
+      <button class="btn ghost" id="allMeet">그림 보기</button>
+    </section>
+
+    <!-- 3. 빈칸 채우기 -->
+    <section class="screen" id="s-quiz">
+      <h2 style="margin-bottom:0">빈칸에 어울리는 단어는?</h2>
+      <p class="sub" style="text-align:left;margin:0 0 4px">어울리는 단어가 여러 개일 수도 있어요.</p>
+      <div class="sentence" id="sentence"></div>
+      <div class="chips" id="chips"></div>
+      <div class="fb" id="fb">
+        <img src="assets/fairy_face.png" alt="">
+        <div class="bubble" id="fbText">단어 카드를 눌러 빈칸을 채워 보세요!</div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn" id="quizNext" style="margin-top:12px;visibility:hidden">다음 문장</button>
+    </section>
+
+    <!-- 4. 결과 -->
+    <section class="screen" id="s-done">
+      <h2 class="center" style="margin-top:2px">감정 단어 복습 완료!</h2>
+      <div class="stat">
+        <div><b id="stKnow">0</b>원래 알던 단어</div>
+        <div><b id="stNew">0</b>새로 만난 단어</div>
+        <div><b id="stQuiz">0</b>빈칸 채운 문장</div>
+      </div>
+      <div class="center" id="badges"></div>
+      <div class="today">
+        <div class="miso" style="font-size:19px;color:var(--purple-d)">오늘 내 마음과 가장 가까운 단어는?</div>
+        <div class="chips" id="todayChips"></div>
+        <p class="diary" id="diary"></p>
+      </div>
+      <div class="promo">
+        <img src="assets/book_cover.jpg" alt="별일 없는 날에 일기 쓰기 표지">
+        <p><strong>감정 단어가 더 궁금하다면?</strong>
+          『별일 없는 날에 일기 쓰기』에는 기분 좋은 감정, 불쾌한 감정, 슬프고 우울한 감정을 나타내는
+          단어가 더 많이 나와요. 일기요정과 30일 동안 일기 습관을 길러 봐요!</p>
+      </div>
+      <button class="btn red" id="moreQuiz">남은 문장도 풀어 보기</button>
+      <a class="btn" id="bookLink" href="#" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">책 자세히 보기</a>
+      <button class="btn ghost" id="restart">처음부터 다시 하기</button>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/logo.png" alt="사계절">
+    그림·예문 출처: 『별일 없는 날에 일기 쓰기-저학년』(박소윤·이주희 글, 메리 그림, 사계절) 38~39쪽<br>
+    ⓒ 박소윤·이주희, 메리 · 사계절출판사. 무단 전재와 복제를 금합니다.
+  </footer>
+</div>
+
+<script>
+/* ===================== 설정 ===================== */
+// 책 소개 링크(서점·홈페이지 주소가 정해지면 바꾸세요)
+const BOOK_URL = "https://www.sakyejul.net/";
+// 한 번에 푸는 빈칸 문장 수
+const QUIZ_COUNT = 6;
+
+/* ============ 38쪽 감정 단어 12개 ============
+   id: 그림 파일 번호(assets/w01.jpg …), word: 단어 카드(책 표기 그대로),
+   fill: 빈칸에 들어갈 꼴, ex: 38쪽 말풍선 예문 */
+const WORDS = [
+  {id:1,  word:"감동이다.",        fill:"감동이었다",     ex:"친구들이 꼴찌로 들어오고 있는 나를 응원해 줘서 감동이었다."},
+  {id:2,  word:"만족스럽다.",      fill:"만족스러웠다",   ex:"급식에 돈가스가 나와서 만족스러웠다."},
+  {id:3,  word:"어깨가 으쓱하다.", fill:"어깨가 으쓱했다", ex:"아무도 못 푼 수학 문제를 내가 풀어서 어깨가 으쓱했다."},
+  {id:4,  word:"마음에 들다.",     fill:"마음에 들었다",   ex:"엄마가 사 주신 가방이 마음에 쏙 들었다."},
+  {id:5,  word:"반갑다.",          fill:"반가웠다",       ex:"한 달 만에 아빠를 만나 엄청 반가웠다."},
+  {id:6,  word:"편안하다.",        fill:"편안했다",       ex:"엄마가 안아 줘서 마음이 참 편안했다."},
+  {id:7,  word:"자랑스럽다.",      fill:"자랑스러웠다",   ex:"일주일 동안 한 번도 빼먹지 않고 일기를 쓴 내가 자랑스러웠다."},
+  {id:8,  word:"벅차오르다.",      fill:"벅차올랐다",     ex:"갓 태어난 동생을 처음 보았을 때 가슴이 벅차올랐다."},
+  {id:9,  word:"설레다.",          fill:"설렜다",         ex:"친구네서 할 첫 파자마 파티 생각에 잠이 안 올 만큼 설렌다."},
+  {id:10, word:"홀가분하다.",      fill:"홀가분했다",     ex:"싸웠던 친구와 화해하니 마음이 몹시 홀가분하다."},
+  {id:11, word:"다행이다.",        fill:"다행이었다",     ex:"놓고 온 점퍼가 운동장에 있어 다행이었다."},
+  {id:12, word:"뿌듯하다.",        fill:"뿌듯했다",       ex:"다리 다친 친구의 가방을 들어 줬더니 마음이 되게 뿌듯했다."}
+];
+
+/* ============ 39쪽 빈칸 문장 12개 ============
+   a: 빈칸 앞, b: 빈칸 뒤, best: 책 흐름상 짝 단어(id), ok: 함께 맞다고 볼 단어(id)
+   ※ ok 목록은 편집팀 확인 전 초안입니다. */
+const QUIZ = [
+  {n:1,  a:"열심히 연습한 피아노 발표회에서 틀리지 않고 잘 쳐서 ", b:".", best:2,  ok:[12,7,3,11]},
+  {n:2,  a:"새로 사귄 친구가 나처럼 공룡을 좋아하니 ",             b:".", best:5,  ok:[4,9]},
+  {n:3,  a:"우리 집 개가 새끼를 낳았다. 자기도 아플 텐데 새끼 강아지들을 핥아 주는 모습이 ", b:".", best:1, ok:[]},
+  {n:4,  a:"모자를 써 보니 거울 속 내 모습이 제법 멋져 보였다. 모자가 ", b:".", best:4, ok:[2]},
+  {n:5,  a:"따뜻한 이불 속에 들어가니 ",                          b:".", best:6,  ok:[]},
+  {n:6,  a:"선생님께서 내가 쓴 일기가 아주 훌륭하다며 친구들 앞에서 읽어 주시니, ", b:".", best:3, ok:[7,12,1]},
+  {n:7,  a:"용돈을 아껴 모아 둔 돈으로 엄마 생신 선물을 샀다. 엄마가 기뻐하시는 모습을 보니 ", b:".", best:12, ok:[1]},
+  {n:8,  a:"마지막 역전 골로 우리 팀이 축구에서 이겼다! 우리 팀이 무척 ", b:".", best:7, ok:[]},
+  {n:9,  a:"운동회 계주에서 내가 마지막 주자였다. 2등으로 달리다가 결승선 직전에서 앞의 친구를 추월해 1등으로 들어왔을 때 가슴이 ", b:".", best:8, ok:[]},
+  {n:10, a:"깜빡 잊고 숙제를 안 가져왔는데 선생님께서 내일까지 내면 된다고 하셔서 ", b:".", best:11, ok:[]},
+  {n:11, a:"며칠 동안 미뤘던 숙제를 드디어 다 끝냈다. 아주 ",      b:".", best:10, ok:[12,2]},
+  {n:12, a:"크리스마스 이브 날, 산타할아버지가 무슨 선물을 주실까 상상하니 마음이 ", b:".", best:9, ok:[]}
+];
+
+/* ===================== 동작 ===================== */
+const $ = s => document.querySelector(s);
+const W = id => WORDS.find(w => w.id === id);
+const img = id => `assets/w${String(id).padStart(2,"0")}.jpg`;
+const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const bare = w => w.replace(/\.$/,"");
+
+let st;
+function reset(){
+  st = { check:{}, ci:0, meetList:[], mi:0, quizOrder:shuffle(QUIZ), qDone:[], qi:0, round:[], tries:0, firstTry:0, solved:false, picked:{} };
+}
+
+/* 읽어 주기
+   1순위: audio 폴더의 녹음 파일(mp3) - 파일 이름은 audio/녹음대본.csv 참고
+   2순위: 녹음 파일이 없으면 기기에 깔린 한국어 음성(자연스러운 음성을 우선 고름) */
+const USE_AUDIO_FILES = true;
+let player = null;
+const pad2 = n => String(n).padStart(2,"0");
+function stopAll(){ if(player){ player.pause(); player=null; } if("speechSynthesis" in window) speechSynthesis.cancel(); }
+function pickVoice(){
+  const vs = ("speechSynthesis" in window) ? speechSynthesis.getVoices().filter(v=>v.lang && v.lang.replace("_","-").startsWith("ko")) : [];
+  const rank = v => /natural|neural|online/i.test(v.name) ? 0 : /google/i.test(v.name) ? 1 : /yuna|sunhi|seohyeon|jimin|siri/i.test(v.name) ? 2 : 3;
+  return vs.sort((a,b)=>rank(a)-rank(b))[0] || null;
+}
+if("speechSynthesis" in window) speechSynthesis.onvoiceschanged = () => {};
+function tts(t){
+  if(!("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(t); u.lang="ko-KR"; u.rate=0.95; u.pitch=1.05;
+  const v = pickVoice(); if(v) u.voice=v;
+  speechSynthesis.speak(u);
+}
+function say(t, key){
+  stopAll();
+  if(USE_AUDIO_FILES && key){
+    const a = new Audio(`audio/${key}.mp3`); player = a;
+    let fell = false; const fall = () => { if(!fell && player===a){ fell=true; player=null; tts(t); } };
+    a.onerror = fall; a.play().catch(fall);
+  } else tts(t);
+}
+const canSpeak = USE_AUDIO_FILES || ("speechSynthesis" in window);
+document.querySelectorAll(".speak").forEach(b=>b.hidden=!canSpeak);
+
+function show(id, stepName, prog){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on", s.id===id));
+  $("#bar").hidden = (id==="s-start");
+  if(stepName) $("#stepName").textContent = stepName;
+  if(prog!=null) $("#progBar").style.width = Math.round(prog*100)+"%";
+  window.scrollTo(0,0);
+}
+
+/* 0 → 1 */
+$("#startBtn").onclick = () => { reset(); showCheck(); };
+$("#homeBtn").onclick = () => { stopAll(); show("s-start"); };
+$("#restart").onclick = () => { reset(); showCheck(); };
+
+/* 1. 단어 점검 */
+const checkOrder = () => WORDS;
+function showCheck(){
+  const w = checkOrder()[st.ci];
+  $("#checkWord").textContent = w.word;
+  show("s-check", `단어 점검 ${st.ci+1}/12`, st.ci/12);
+}
+$("#checkSpeak").onclick = () => say(bare(WORDS[st.ci].word), `word_${pad2(WORDS[st.ci].id)}`);
+document.querySelectorAll("#s-check .answers button").forEach(b=>{
+  b.onclick = () => {
+    st.check[WORDS[st.ci].id] = b.dataset.k;
+    st.ci++;
+    if(st.ci < 12) showCheck(); else afterCheck();
+  };
+});
+function afterCheck(){
+  st.meetList = WORDS.filter(w=>st.check[w.id]!=="know").map(w=>w.id);
+  if(st.meetList.length===0){ show("s-allknow","단어 만나기",1); return; }
+  st.mi = 0; showMeet();
+}
+$("#allQuiz").onclick = () => startQuiz();
+$("#allMeet").onclick = () => { st.meetList = WORDS.map(w=>w.id); st.mi=0; showMeet(); };
+
+/* 2. 단어 만나기 */
+function showMeet(){
+  const id = st.meetList[st.mi], w = W(id), k = st.check[id];
+  $("#meetTitle").textContent = k==="new" ? "처음 만나는 단어예요" : k==="unsure" ? "헷갈렸던 단어예요" : "그림으로 단어 만나기";
+  $("#meetImg").src = img(id); $("#meetImg").alt = w.ex;
+  $("#meetWord").textContent = w.word;
+  $("#meetDots").innerHTML = st.meetList.map((_,i)=>`<i class="${i===st.mi?'on':''}"></i>`).join("");
+  $("#meetPrev").style.visibility = st.mi===0 ? "hidden":"visible";
+  $("#meetNext").textContent = st.mi===st.meetList.length-1 ? "빈칸 채우기로!" : "다음";
+  show("s-meet", `단어 만나기 ${st.mi+1}/${st.meetList.length}`, (st.mi+1)/st.meetList.length);
+}
+$("#meetSpeak").onclick = () => { const id=st.meetList[st.mi]; say(W(id).ex, `ex_${pad2(id)}`); };
+$("#meetPrev").onclick = () => { if(st.mi>0){st.mi--; showMeet();} };
+$("#meetNext").onclick = () => { if(st.mi < st.meetList.length-1){st.mi++; showMeet();} else startQuiz(); };
+
+/* 3. 빈칸 채우기 */
+function startQuiz(){
+  const left = st.quizOrder.filter(q=>!st.qDone.includes(q.n));
+  st.round = left.slice(0, QUIZ_COUNT); st.qi = 0;
+  showQuiz();
+}
+function showQuiz(){
+  const q = st.round[st.qi];
+  st.tries = 0; st.solved = false;
+  $("#sentence").innerHTML = `<span class="no">${q.n}</span>${q.a}<span class="blank" id="blank">______</span>${q.b}`
+    + (canSpeak ? ` <button class="speak" id="qSpeak">🔊 문장 듣기</button>` : "");
+  if(canSpeak) $("#qSpeak").onclick = () => say(q.a + "…, 음…, " + q.b, `q${pad2(q.n)}`);
+  $("#chips").innerHTML = WORDS.map(w=>`<button class="chip" data-id="${w.id}">${bare(w.word)}</button>`).join("");
+  $("#chips").querySelectorAll(".chip").forEach(c=>c.onclick=()=>pick(q, +c.dataset.id, c));
+  fb("단어 카드를 눌러 빈칸을 채워 보세요!");
+  $("#quizNext").style.visibility = "hidden";
+  show("s-quiz", `빈칸 채우기 ${st.qi+1}/${st.round.length}`, st.qi/st.round.length);
+}
+function fb(html, good){
+  $("#fbText").innerHTML = html;
+  $("#fbText").classList.toggle("good", !!good);
+}
+function pick(q, id, el){
+  if(st.solved) return;
+  const okIds = [q.best, ...q.ok];
+  if(okIds.includes(id)){
+    st.solved = true;
+    if(st.tries===0) st.firstTry++;
+    st.qDone.push(q.n); st.picked[id] = true;
+    const blank = $("#blank"); blank.textContent = W(id).fill; blank.classList.add("filled");
+    el.classList.add("ok");
+    say(q.a + W(id).fill + q.b, `q${pad2(q.n)}_w${pad2(id)}`);
+    const others = okIds.filter(x=>x!==id).map(x=>`<span class="also">${bare(W(x).word)}</span>`).join(" ");
+    const cheer = ["딱 어울려요!","멋진 단어를 골랐어요!","마음이 잘 보이는 문장이 됐어요!","정말 잘했어요!"][Math.floor(Math.random()*4)];
+    fb(`<b>${cheer}</b>` + (others ? `<br>이런 단어도 어울려요: ${others}` : ""), true);
+    confetti();
+    $("#quizNext").textContent = st.qi===st.round.length-1 ? "결과 보기" : "다음 문장";
+    $("#quizNext").style.visibility = "visible";
+    $("#progBar").style.width = Math.round((st.qi+1)/st.round.length*100)+"%";
+  } else {
+    st.tries++;
+    el.classList.add("no","shake"); setTimeout(()=>el.classList.remove("shake"),400);
+    if(st.tries===1){
+      fb("음, 이 문장에는 조금 어색해요. 문장 속 친구의 마음을 상상하며 다시 골라 볼까요?");
+    } else {
+      document.querySelector(`.chip[data-id="${q.best}"]`).classList.add("hint");
+      fb(`힌트! 반짝이는 카드를 볼까요?<br><span style="font-size:14px">38쪽 그림: “${W(q.best).ex}”</span>`);
+    }
+  }
+}
+$("#quizNext").onclick = () => { st.qi++; if(st.qi < st.round.length) showQuiz(); else showDone(); };
+
+/* 4. 결과 */
+function showDone(){
+  const know = WORDS.filter(w=>st.check[w.id]==="know").length;
+  $("#stKnow").textContent = know;
+  $("#stNew").textContent = 12-know;
+  $("#stQuiz").textContent = st.qDone.length + "/12";
+  $("#badges").innerHTML = WORDS.map(w=>`<span class="badge ${st.check[w.id]!=="know"?'new':''}">${bare(w.word)}</span>`).join("")
+    + `<p class="sub" style="font-size:13px;margin-top:4px">분홍색 단어는 오늘 새로 만난 단어예요.</p>`;
+  $("#todayChips").innerHTML = WORDS.map(w=>`<button class="chip" data-id="${w.id}">${bare(w.word)}</button>`).join("");
+  $("#todayChips").querySelectorAll(".chip").forEach(c=>c.onclick=()=>{
+    $("#todayChips").querySelectorAll(".chip").forEach(x=>x.classList.remove("ok"));
+    c.classList.add("ok");
+    const w = W(+c.dataset.id);
+    $("#diary").innerHTML = `오늘 내 마음은 <b>‘${bare(w.word)}’</b>예요.<br><span style="font-size:15px;color:var(--gray)">왜 그런 마음이 들었는지 일기장에 써 볼까요?</span>`;
+  });
+  $("#diary").innerHTML = "";
+  $("#moreQuiz").style.display = st.qDone.length < 12 ? "block" : "none";
+  show("s-done", "복습 완료", 1);
+  confetti(60);
+}
+$("#moreQuiz").onclick = () => startQuiz();
+$("#bookLink").href = BOOK_URL;
+
+/* 축하 종이 조각 */
+function confetti(n=24){
+  const box = document.createElement("div"); box.className="confetti";
+  const colors = ["#e8323a","#ffe98f","#8b7cc8","#f0a39a","#3fae6a","#6cc3d5"];
+  for(let i=0;i<n;i++){
+    const p=document.createElement("i");
+    p.style.left=Math.random()*100+"vw"; p.style.background=colors[i%colors.length];
+    p.style.animationDelay=(Math.random()*.4)+"s"; p.style.animationDuration=(1.2+Math.random()*.9)+"s";
+    box.appendChild(p);
+  }
+  document.body.appendChild(box); setTimeout(()=>box.remove(),2600);
+}
+
+reset();
+</script>
+</body>
+</html>
